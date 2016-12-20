@@ -1,2 +1,3 @@
 buildbot[bundle]
 psycopg2cffi-compat
+buildbot_profiler
