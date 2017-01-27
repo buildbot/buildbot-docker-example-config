@@ -1,4 +1,2 @@
 buildbot[bundle]
 psycopg2cffi-compat
-./buildbot-0.9.3_485_gab0e79a-py2-none-any.whl
-./buildbot_www-0.9.2_113_gfe1fb7c-py2-none-any.whl
