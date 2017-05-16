@@ -1,18 +1,25 @@
 version: '2'
 services:
+  config:
+    image: nginx
+    volumes:
+      - ./config:/usr/share/nginx/html:ro
+
   buildbot:
     image: buildbot/buildbot-master:master
     env_file:
         - db.env
     environment:
         - BUILDBOT_CONFIG_DIR=config
-        - BUILDBOT_CONFIG_URL=https://github.com/buildbot/buildbot-docker-example-config/archive/master.tar.gz
+        - BUILDBOT_CONFIG_URL=http://config/master.cfg
         - BUILDBOT_WORKER_PORT=9989
         - BUILDBOT_WEB_URL=http://localhost:8080/
         - BUILDBOT_WEB_PORT=8080
     links:
+      - config:config
       - db
     depends_on:
+      - config:config
       - db
     ports:
       - "8080:8080"

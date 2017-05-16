@@ -14,12 +14,17 @@ services:
       - 8080:8080
       - 9989:9989   # for external workers
 
+  config:
+    image: nginx
+    volumes:
+      - ./config:/usr/share/nginx/html:ro
+
   buildbot:
     image: buildbot/buildbot-master:latest
     env_file: db.env
     environment:
         - BUILDBOT_CONFIG_DIR=config
-        - BUILDBOT_CONFIG_URL=https://github.com/buildbot/buildbot-docker-example-config/archive/master.tar.gz
+        - BUILDBOT_CONFIG_URL=http://config/master.cfg
         - BUILDBOT_WORKER_PORT=9989
         - BUILDBOT_WEB_URL=http://localhost:8080/
         - BUILDBOT_WEB_PORT=8080
@@ -28,6 +33,7 @@ services:
         - BUILDBOT_MQ_REALM=realm1
         - TCP_PORTS=8080,9989
     links:
+      - config:config
       - db
     expose:
         - 8080
