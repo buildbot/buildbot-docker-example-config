@@ -8,14 +8,14 @@ services:
         - BUILDBOT_CONFIG_DIR=config
         - BUILDBOT_CONFIG_URL=https://github.com/buildbot/buildbot-docker-example-config/archive/master.tar.gz
         - BUILDBOT_WORKER_PORT=9989
-        - BUILDBOT_WEB_URL=http://localhost:8080/
-        - BUILDBOT_WEB_PORT=8080
+        - BUILDBOT_WEB_URL=http://localhost:8010/
+        - BUILDBOT_WEB_PORT=8010
     links:
       - db
     depends_on:
       - db
     ports:
-      - "8080:8080"
+      - "8010:8010"
   db:
     env_file:
         - db.env
