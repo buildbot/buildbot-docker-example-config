@@ -1,4 +1,6 @@
-version: '2'
+volumes:
+  db_data:
+  
 services:
   buildbot:
     image: buildbot/buildbot-master:master
@@ -20,6 +22,8 @@ services:
     env_file:
       - db.env
     image: "postgres:9.4"
+    volumes: 
+      - db_data:/var/lib/postgresql/data
     expose:
       - 5432
 
